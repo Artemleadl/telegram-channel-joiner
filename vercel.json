@@ -14,5 +14,11 @@
   ],
   "env": {
     "PYTHONPATH": "src"
+  },
+  "functions": {
+    "src/bot.py": {
+      "memory": 1024,
+      "maxDuration": 60
+    }
   }
 } 
