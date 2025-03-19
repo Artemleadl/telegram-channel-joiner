@@ -3,20 +3,13 @@
   "builds": [
     {
       "src": "api/bot.py",
-      "use": "@vercel/python",
-      "config": {
-        "runtime": "python3.9",
-        "maxLambdaSize": "15mb"
-      }
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/(.*)",
       "dest": "api/bot.py"
     }
-  ],
-  "env": {
-    "PYTHONPATH": "."
-  }
+  ]
 } 

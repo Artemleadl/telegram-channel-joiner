@@ -33,23 +33,11 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-        env:
+      - name: Deploy to Vercel
+        uses: BetaHuhn/deploy-to-vercel-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: B1M75jGERU1kgM710dIb3Dfa
           VERCEL_PROJECT_ID: prj_zPfaqp2SlDfkbv307ZZb8CUM9U7v
-
-      - name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: B1M75jGERU1kgM710dIb3Dfa
-          VERCEL_PROJECT_ID: prj_zPfaqp2SlDfkbv307ZZb8CUM9U7v
-
-      - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: B1M75jGERU1kgM710dIb3Dfa
-          VERCEL_PROJECT_ID: prj_zPfaqp2SlDfkbv307ZZb8CUM9U7v 
+          PRODUCTION: true 
