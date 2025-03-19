@@ -14,13 +14,20 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
-
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v20
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-org-id: B1M75jGERU1kgM710dIb3Dfa
-          vercel-project-id: prj_zPfaqp2SlDfkbv307ZZb8CUM9U7v
-          vercel-args: '--prod'
-          working-directory: . 
+          python-version: '3.9'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Deploy to Vercel
+        uses: vercel/actions/cli@master
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: B1M75jGERU1kgM710dIb3Dfa
+          VERCEL_PROJECT_ID: prj_zPfaqp2SlDfkbv307ZZb8CUM9U7v 
