@@ -2,23 +2,21 @@
   "version": 2,
   "builds": [
     {
-      "src": "src/bot.py",
-      "use": "@vercel/python"
+      "src": "api/index.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxDuration": 60,
+        "memory": 1024
+      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "src/bot.py"
+      "dest": "api/index.py"
     }
   ],
   "env": {
     "PYTHONPATH": "src"
-  },
-  "functions": {
-    "src/bot.py": {
-      "memory": 1024,
-      "maxDuration": 60
-    }
   }
 } 
