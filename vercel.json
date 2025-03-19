@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/index.py",
+      "src": "api/bot.py",
       "use": "@vercel/python",
       "config": {
         "maxDuration": 60,
@@ -13,10 +13,11 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "api/index.py"
+      "dest": "api/bot.py"
     }
   ],
   "env": {
-    "PYTHONPATH": "src"
+    "PYTHONPATH": ".",
+    "PYTHONASYNCIODEBUG": "1"
   }
 } 
